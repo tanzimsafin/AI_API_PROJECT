@@ -57,7 +57,7 @@ userRouter.get('/signin', async (req, res) => {
         email,
     })
     const User_Id=result._id;
-    const hashed_Password=result.Password;
+    const hashed_Password=result.Password;  
     if(result){
         const verify=bcrypt.compare(Password,hashed_Password);//compare with Password and hash Password
         if(verify){
