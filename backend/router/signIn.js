@@ -42,7 +42,7 @@ userRouter.post('/signup', async (req, res) => {
          Password:hashed_Password,// replaced with hasdhed password
          DateOfBirth
      })
-     res.send('User is Signed Up')
+     res.send({message:'User is Signed Up'})
     }
     
 });
@@ -50,27 +50,89 @@ userRouter.post('/signup', async (req, res) => {
 
 //-----------------------------------------------------------------------------------
 //sign in end point 
-userRouter.get('/signin', async (req, res) => {
+userRouter.post('/signin', async (req, res) => {
     const email=req.body.email;
     const Password=req.body.Password;
     const result=await SignUpModel.findOne({
         email,
     })
-    const User_Id=result._id;
-    const hashed_Password=result.Password;  
     if(result){
-        const verify=bcrypt.compare(Password,hashed_Password);//compare with Password and hash Password
+        const User_Id=result._id;
+        const hashed_Password=result.Password; 
+        const verify=await bcrypt.compare(Password,hashed_Password);//compare with Password and hash Password
         if(verify){
             const token=jwt.sign({id:User_Id},JWT_SECRET_User);
             res.json({message:`User is SignedIn `, "token":token});
         }else{
-           res.send('Sorry Wrong Password!');
+           res.send({message:'Sorry Wrong Password!'});
         }
     }
    else{
-    res.send('Error ! Wrong credentials')
+    res.send({message:'Error ! Wrong credentials'})
    }
 });
 module.exports = {
     userRouter:userRouter
 };
+//--------------------------Forgot PassWord------------------------------
+//forget Password Option 
+userRouter.post('/forgetPassword', async (req, res) => {
+    const { email } = req.body;
+    try {
+        const user = await SignUpModel.findOne({ email });
+        if (user) {
+            // If email exists, return a success response
+            res.json({ exists: true, message: 'Email verified' });
+        } else {
+            // If email does not exist, return false
+            res.json({ exists: false, message: 'Email not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+userRouter.put('/forgetPassword', async (req, res) => {
+    const { email, password } = req.body;
+    const user={
+        email:req.body.email,
+        Password:req.body.Password,
+    }
+    //input validation using zod
+    const User_Schema = z.object({
+        email: z.string().email({ message: "Invalid email address" }),
+        Password: z.string().min(5, { message: "Password must be at least 5 characters long" })
+            .regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter" })
+            .regex(/[0-9]/, { message: "Password must contain at least one number" })
+            .regex(/[^a-zA-Z0-9]/, { message: "Password must contain at least one special character" }),
+    });
+    //check format input format by safeparse
+    const is_Valid_Input = User_Schema.safeParse(user);
+    
+    if (!is_Valid_Input.success){
+       res.json({ message: 'Invalid input format' });
+    }else{
+        try {
+            const user = await SignUpModel.findOne({ email });
+            if (user) {
+                // Hash the new password
+                const hashedPassword = await bcrypt.hash(password, parseInt(saltRounds));
+                
+                // Update user's password
+                await SignUpModel.findOneAndUpdate(
+                    { email },
+                    { password: hashedPassword }
+                );
+    
+                res.json({ message: 'Password successfully updated' });
+            } else {
+                res.status(404).json({ message: 'User not found' });
+            }
+        } catch (error) {
+            res.status(500).json({ message: 'Error updating password' });
+        }
+
+    }
+ 
+});
+

@@ -6,6 +6,7 @@ import Contact from "../component/Contact";
 import NoPage from "../component/NoPage";
 import SignForm from "../component/signup";
 import LoginForm from "../component/Login";
+import Solana_Adapter from "../component/Crypto/solana_Addapter";
 
 function NavBar() {
   return (
@@ -18,6 +19,7 @@ function NavBar() {
           <Route path="app/v1/user/chat" element={<Chat/>} />
           <Route path="app/v1/user/login" element={<LoginForm />} />
           <Route path="app/v1/user/contact" element={<Contact />} />
+          <Route path='/app/v1/user/crypto' element={<Solana_Adapter />}>Crypto</Route>
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
@@ -28,13 +30,14 @@ function NavBar() {
 function Layout() {
   return (
     <div>
-      <nav className="flex justify-around gap-10 p-3 font-serif text-xl bg-blue-600 text-slate-300">
+      <nav className="flex justify-around gap-10 p-4 font-serif text-xl bg-blue-500 text-red-200">
         <Link className="text-2xl font-bold" to="/">Home</Link> 
         <Link to="/app/v1/user/market">Market</Link>
         <Link to="/app/v1/user/signup">Sign up</Link>
         <Link to="/app/v1/user/login">Log in</Link>
         <Link to="/app/v1/user/chat">Chat</Link> 
         <Link to="/app/v1/user/contact">Contact</Link>
+        <Link to='/app/v1/user/crypto'>Crypto</Link>
       </nav>
       <Outlet />
     </div>

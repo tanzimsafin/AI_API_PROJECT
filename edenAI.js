@@ -1,7 +1,7 @@
 import fetch from "node-fetch"; // Only needed for Node.js, not needed in the browser
 
 const url = "https://api.edenai.run/v2/workflow/dfa7a567-e135-44cf-900a-4bb01d8efe9f/execution/";
-const payload = {"prompt":"Hey write a c code for me find largest number in array"};
+const payload = {"prompt":`Give me some name of bangladeshi foods`};
 
 const launchExecution = async () => {
   const response = await fetch(url, {
@@ -43,7 +43,7 @@ const main = async () => {
   const execution = await launchExecution();
   const data = await getExecutionResult(execution.id);
   console.log(payload);
-  console.log(data.content.results.text__chat.results[0].generated_text);
+  console.log(`Generated Text: ${data.content.results.text__chat.results[0].generated_text}`);
 };
 
 main();
