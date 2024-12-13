@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css"
 
-const cryptoDashboard = () => {
+const CryptoDashboard = () => {
 const [stockData, setStockData] = useState([]);
 const [error, setError] = useState(null);
 
@@ -18,7 +18,7 @@ const [error, setError] = useState(null);
       // Subscribe to specific stocks (AMZN, TSLA as example)
       const subscribeMessage = JSON.stringify({
         action: "subscribe",
-        symbols: "ETH_USD", // Add more symbols if needed
+        symbols: "ETH-USD", // Add more symbols if needed
       });
       socket.send(subscribeMessage);
     };
@@ -113,4 +113,4 @@ const [error, setError] = useState(null);
   );
 };
 
-export default cryptoDashboard;
+export default CryptoDashboard;

@@ -1,11 +1,6 @@
-import React from "react";
-import Chat from './Chat'
-function Market(){
-    return (
-        <div>
-            <Chat />
-            This is MarketPlace
-        </div>
-    )
+function Market() {
+    return (<div>
+        This is the market
+    </div>)
 }
 export default Market;

@@ -18,7 +18,7 @@ const [error, setError] = useState(null);
       // Subscribe to specific stocks (AMZN, TSLA as example)
       const subscribeMessage = JSON.stringify({
         action: "subscribe",
-        symbols: "AMZN,AAPL", // Add more symbols if needed
+        symbols: "AAPL,TSLA", // Add more symbols if needed
       });
       socket.send(subscribeMessage);
     };

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [Password, setPassword] = useState('');
   const [forgotEmail, setForgotEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [showForgotPassword, setShowForgotPassword] = useState(false);
@@ -15,10 +15,11 @@ const LoginForm = () => {
     try {
       const response = await axios.post('http://localhost:8080/app/v1/user/signin', {
         email,
-        password
+        Password
       });
       console.log('Login Success:', response.data);
-      // Handle successful login (e.g., redirect, set auth token)
+      localStorage.setItem('token', response.data.token);
+     
     } catch (error) {
       console.error('Login Error:', error);
       setMessage('Login failed. Please check your credentials.');
@@ -54,7 +55,7 @@ const LoginForm = () => {
     try {
       const response = await axios.put('http://localhost:8080/app/v1/user/forgetPassword', {
         email: forgotEmail,
-        password: newPassword
+        Password: newPassword
       });
       
       setMessage(response.data.message);
@@ -112,7 +113,7 @@ return (
                             <input
                                 type="password"
                                 id="password"
-                                value={password}
+                                value={Password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 className="w-full px-3 py-2 text-gray-700 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 placeholder="Enter your password"

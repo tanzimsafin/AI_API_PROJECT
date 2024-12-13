@@ -30,8 +30,8 @@ function NavBar() {
 function Layout() {
   return (
     <div>
-      <nav className="flex justify-around gap-10 p-4 font-serif text-xl bg-blue-500 text-red-200">
-        <Link className="text-2xl font-bold" to="/">Home</Link> 
+     <nav className="flex justify-around gap-10 p-4 font-serif text-xl bg-blue-400 text-red-500">
+        <Link className="text-2xl font-bold text-red-400" to="/">Home</Link> 
         <Link to="/app/v1/user/market">Market</Link>
         <Link to="/app/v1/user/signup">Sign up</Link>
         <Link to="/app/v1/user/login">Log in</Link>
