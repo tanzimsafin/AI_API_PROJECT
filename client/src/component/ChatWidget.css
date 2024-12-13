@@ -1,70 +1,141 @@
+/* ChatWidget.css */
+
+/* Chat Widget Button */
 .chat-widget {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    background-color: #007bff;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #6a0dad; /* Vibrant purple */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  z-index: 1000;
+  animation: bounce 2s infinite;
+}
+
+.chat-widget:hover {
+  background-color: #8000ff;
+  transform: scale(1.1);
+}
+
+/* Bounce animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
   }
-  
-  .chatbox {
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    width: 300px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
+  50% {
+    transform: translateY(-10px);
   }
-  
-  .chatbox-header {
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+}
+
+/* Chatbox Container */
+.chatbox {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 350px;
+  max-height: 500px;
+  background-color: #2d1b4e; /* Deep purple */
+  border-radius: 20px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transform: scale(0);
+  transform-origin: bottom right;
+  animation: fadeIn 0.5s forwards;
+}
+
+.chatbox-header {
+  background-color: #6a0dad;
+  padding: 10px 20px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+.chatbox-body {
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  font-size: 14px;
+  overflow-y: auto;
+  max-height: 350px;
+}
+
+.chatbox-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chatbox-body::-webkit-scrollbar-thumb {
+  background: #8000ff;
+  border-radius: 3px;
+}
+
+.chatbox-footer {
+  display: flex;
+  padding: 10px;
+  background-color: #3c1a62;
+}
+
+.chatbox-footer input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  margin-right: 10px;
+  outline: none;
+}
+
+.chatbox-footer button {
+  padding: 10px 20px;
+  background-color: #6a0dad;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+}
+
+.chatbox-footer button:hover {
+  background-color: #8000ff;
+}
+
+/* Open animation */
+@keyframes fadeIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
   }
-  
-  .chatbox-header h6 {
-    margin: 0;
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
-  
-  .close-chat {
-    background: none;
-    border: none;
-    font-size: 20px;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .chatbox-body {
-    padding: 10px;
-  }
-  
-  .chat-message {
-    background-color: #f1f1f1;
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .chatbox-footer {
-    display: flex;
-    padding: 10px;
-    border-top: 1px solid #ccc;
-  }
-  
-  .chatbox-footer input {
-    flex: 1;
-    margin-right: 10px;
-  }
-  
+}
+
+/* Messages styling */
+.chat-message {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.user-message {
+  background-color: #8000ff;
+  color: white;
+  align-self: flex-end;
+}
+
+.ai-response {
+  background-color: #4b2a6f;
+  color: white;
+}
+
+.error {
+  background-color: #ff4d4d;
+  color: white;
+}
