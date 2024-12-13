@@ -1,12 +1,6 @@
-import Chat from "./Chat";
-function Market (){
-  return (
-    <div>
-        <Chat />
-    </div>
-    
-      
-  );
-};
-
+function Market() {
+    return (<div>
+        
+    </div>)
+}
 export default Market;
