@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const StockDashboard = () => {
-const [stockData, setStockData] = useState([]);
-const [error, setError] = useState(null);
+  const [stockData, setStockData] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     // Replace with your WebSocket URL and API key
@@ -88,20 +88,17 @@ const [error, setError] = useState(null);
           <tbody>
             {stockData.map((stock, index) => (
               <tr key={index} className="hover:bg-gray-50">
-                <td className="border p-2">{stock.symbol}</td>
-                <td className="border p-2">
+                <td className="border p-2 bg-black text-white">{stock.symbol}</td>
+                <td className="border p-2 bg-black text-white">
                   ${(stock.price || 0).toFixed(2)}
                 </td>
                 <td 
-                  className={`border p-2 ${
-                    (stock.change || 0) >= 0 ? "text-green-600" : "text-red-600"
-                  }`}
-                >
+                  className="border p-2 bg-black text-white">
                   {(stock.change || 0).toFixed(2)}
                 </td>
-                <td className="border p-2">{stock.volume}</td>
-                <td className="border p-2">{stock.marketStatus}</td>
-                <td className="border p-2">
+                <td className="border p-2 bg-black text-white">{stock.volume}</td>
+                <td className="border p-2 bg-black text-white">{stock.marketStatus}</td>
+                <td className="border p-2 bg-black text-white">
                   {new Date(stock.timestamp).toLocaleString()}
                 </td>
               </tr>

@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
 import Content from "../component/Content";
 import Chat from "../component/Chat";
@@ -6,23 +7,31 @@ import Contact from "../component/Contact";
 import NoPage from "../component/NoPage";
 import SignForm from "../component/signup";
 import LoginForm from "../component/Login";
-import Solana_Adapter from "../component/Crypto/solana_Addapter";
 
 function NavBar() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Content />} />
-          <Route path="app/v1/user/market" element={<Market />} />
-          <Route path="app/v1/user/signup" element={<SignForm />} />
-          <Route path="app/v1/user/chat" element={<Chat/>} />
-          <Route path="app/v1/user/login" element={<LoginForm />} />
-          <Route path="app/v1/user/contact" element={<Contact />} />
-          <Route path='/app/v1/user/crypto' element={<Solana_Adapter />}>Crypto</Route>
-          <Route path="*" element={<NoPage />} />
-        </Route>
-      </Routes>
+      <div
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1554260570-e9689a3418b8?q=80&w=1782&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          minHeight: "100vh",
+        }}
+      >
+        <Routes>
+          <Route path="/" element={<Layout />} >
+            <Route index element={<Content />} />
+            <Route path="app/v1/user/market" element={<Market />} />
+            <Route path="app/v1/user/signup" element={<SignForm />} />
+            <Route path="app/v1/user/chat" element={<Chat />} />
+            <Route path="app/v1/user/login" element={<LoginForm />} />
+            <Route path="app/v1/user/contact" element={<Contact />} />
+            <Route path="*" element={<NoPage />} />
+          </Route>
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
@@ -30,14 +39,64 @@ function NavBar() {
 function Layout() {
   return (
     <div>
-     <nav className="flex justify-around gap-10 p-4 font-serif text-xl bg-blue-400 text-red-500">
-        <Link className="text-2xl font-bold text-red-400" to="/">Home</Link> 
-        <Link to="/app/v1/user/market">Market</Link>
-        <Link to="/app/v1/user/signup">Sign up</Link>
-        <Link to="/app/v1/user/login">Log in</Link>
-        <Link to="/app/v1/user/chat">Chat</Link> 
-        <Link to="/app/v1/user/contact">Contact</Link>
-        <Link to='/app/v1/user/crypto'>Crypto</Link>
+      <nav
+        className="flex justify-between items-center p-4 text-slate-300"
+        style={{
+          backgroundColor: "rgba(0, 0, 0, 0.8)",
+        }}
+      >
+        {/* Left Section: Home and Market */}
+        <div className="flex items-center gap-8">
+          <Link
+            className="text-lg font-semibold px-4 py-2 rounded hover:bg-blue-400 hover:text-white transition-all"
+            style={{ textDecoration: "none" }}
+            to="/"
+          >
+            Home
+          </Link>
+          <Link
+            className="text-lg font-semibold px-4 py-2 rounded hover:bg-blue-400 hover:text-white transition-all"
+            style={{ textDecoration: "none" }}
+            to="/app/v1/user/market"
+          >
+            Market
+          </Link>
+        </div>
+
+        {/* Middle Section: Search Bar */}
+        <div className="flex-grow flex justify-center">
+          <form className="flex items-center gap-2 w-auto" onSubmit={(e) => e.preventDefault()}>
+            <input
+              type="text"
+              placeholder="Search markets"
+              className="px-4 py-2 w-72 rounded-lg bg-slate-700 text-white focus:outline-none focus:ring focus:ring-blue-500 shadow-md"
+            />
+            <button
+              type="submit"
+              className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow-md"
+            >
+              Enter
+            </button>
+          </form>
+        </div>
+
+        {/* Right Section: Sign Up and Log In */}
+        <div className="flex items-center gap-8">
+          <Link
+            className="text-lg font-semibold px-4 py-2 rounded bg-green-500 text-white hover:bg-green-600 transition-all"
+            style={{ textDecoration: "none" }}
+            to="/app/v1/user/signup"
+          >
+            Sign up
+          </Link>
+          <Link
+            className="text-lg font-semibold px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 transition-all"
+            style={{ textDecoration: "none" }}
+            to="/app/v1/user/login"
+          >
+            Log in
+          </Link>
+        </div>
       </nav>
       <Outlet />
     </div>
