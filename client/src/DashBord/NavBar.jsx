@@ -8,6 +8,7 @@ import NoPage from "../component/NoPage";
 import SignForm from "../component/signup";
 import LoginForm from "../component/Login";
 
+
 function NavBar() {
   return (
     <BrowserRouter>

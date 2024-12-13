@@ -7,7 +7,8 @@ const {SignUpModel}=require('../schema');
 const jwt = require('jsonwebtoken');
 const {z}=require('zod');
 const {JWT_SECRET_User}=require('../config');
-//sign up end point
+const {userMiddleware}=require('../middleware/userMiddleware');
+//------------------------------sign up end point----------------------
 userRouter.post('/signup', async (req, res) => {
     const name=req.body.name;
     const email=req.body.email;
@@ -48,7 +49,7 @@ userRouter.post('/signup', async (req, res) => {
 });
 
 
-//-----------------------------------------------------------------------------------
+//----------------------------SignIn----------------------------------------------------
 //sign in end point 
 userRouter.post('/signin', async (req, res) => {
     const email=req.body.email;
@@ -58,10 +59,10 @@ userRouter.post('/signin', async (req, res) => {
     })
     if(result){
         const User_Id=result._id;
-        const hashed_Password=result.Password; 
+        const hashed_Password=result.Password;
         const verify=await bcrypt.compare(Password,hashed_Password);//compare with Password and hash Password
         if(verify){
-            const token=jwt.sign({id:User_Id},JWT_SECRET_User);
+            const token = jwt.sign({ id:User_Id }, JWT_SECRET_User, { expiresIn: '1h' });
             res.json({message:`User is SignedIn `, "token":token});
         }else{
            res.send({message:'Sorry Wrong Password!'});
@@ -71,9 +72,7 @@ userRouter.post('/signin', async (req, res) => {
     res.send({message:'Error ! Wrong credentials'})
    }
 });
-module.exports = {
-    userRouter:userRouter
-};
+
 //--------------------------Forgot PassWord------------------------------
 //forget Password Option 
 userRouter.post('/forgetPassword', async (req, res) => {
@@ -93,7 +92,7 @@ userRouter.post('/forgetPassword', async (req, res) => {
 });
 
 userRouter.put('/forgetPassword', async (req, res) => {
-    const { email, password } = req.body;
+    const { email, Password } = req.body;
     const user={
         email:req.body.email,
         Password:req.body.Password,
@@ -107,8 +106,8 @@ userRouter.put('/forgetPassword', async (req, res) => {
             .regex(/[^a-zA-Z0-9]/, { message: "Password must contain at least one special character" }),
     });
     //check format input format by safeparse
-    const is_Valid_Input = User_Schema.safeParse(user);
     
+    const is_Valid_Input = User_Schema.safeParse(user);
     if (!is_Valid_Input.success){
        res.json({ message: 'Invalid input format' });
     }else{
@@ -116,12 +115,12 @@ userRouter.put('/forgetPassword', async (req, res) => {
             const user = await SignUpModel.findOne({ email });
             if (user) {
                 // Hash the new password
-                const hashedPassword = await bcrypt.hash(password, parseInt(saltRounds));
+                const hashedPassword = await bcrypt.hash(Password, parseInt(saltRounds));
                 
                 // Update user's password
                 await SignUpModel.findOneAndUpdate(
                     { email },
-                    { password: hashedPassword }
+                    { Password: hashedPassword }
                 );
     
                 res.json({ message: 'Password successfully updated' });
@@ -136,3 +135,12 @@ userRouter.put('/forgetPassword', async (req, res) => {
  
 });
 
+//---------------------------------Market-------------------------------
+userRouter.get('/market', userMiddleware, async (req, res) => {
+    res.json({ message: 'Market data retrieved' });
+});
+
+
+module.exports = {
+userRouter:userRouter
+};
