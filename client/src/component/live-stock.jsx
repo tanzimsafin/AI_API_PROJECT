@@ -65,7 +65,7 @@ const StockDashboard = () => {
 
   return (
     <div className="container mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold text-center mb-4">Live Stock Market Dashboard</h1>
+      <h1 className="text-3xl font-bold text-white text-center mb-6">Live Stock Market Dashboard</h1>
       
       {error && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
@@ -74,15 +74,15 @@ const StockDashboard = () => {
       )}
 
       <div className="overflow-x-auto">
-        <table className="w-full border-collapse border border-gray-200">
-          <thead className="bg-gray-100">
+        <table className="table table-striped table-bordered table-sm w-full">
+          <thead className="bg-gray-800 text-white">
             <tr>
-              <th className="border p-2 text-left">Symbol</th>
-              <th className="border p-2 text-left">Price</th>
-              <th className="border p-2 text-left">Change</th>
-              <th className="border p-2 text-left">Volume</th>
-              <th className="border p-2 text-left">Market Status</th>
-              <th className="border p-2 text-left">Timestamp</th>
+              <th className="border p-2">Symbol</th>
+              <th className="border p-2">Price</th>
+              <th className="border p-2">Change</th>
+              <th className="border p-2">Volume</th>
+              <th className="border p-2">Market Status</th>
+              <th className="border p-2">Timestamp</th>
             </tr>
           </thead>
           <tbody>
@@ -99,7 +99,9 @@ const StockDashboard = () => {
                 <td className="border p-2 bg-black text-white">{stock.volume}</td>
                 <td className="border p-2 bg-black text-white">{stock.marketStatus}</td>
                 <td className="border p-2 bg-black text-white">
-                  {new Date(stock.timestamp).toLocaleString()}
+                  {/* Format timestamp to a shorter form */}
+                  {new Date(stock.timestamp).toLocaleDateString()}{" "}
+                  {new Date(stock.timestamp).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}
                 </td>
               </tr>
             ))}
