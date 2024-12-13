@@ -7,6 +7,7 @@ import Contact from "../component/Contact";
 import NoPage from "../component/NoPage";
 import SignForm from "../component/signup";
 import LoginForm from "../component/Login";
+import Solana_Adapter from "../component/Crypto/solana_Addapter";  // Import the Solana_Adapter component
 
 function NavBar() {
   return (
@@ -21,11 +22,12 @@ function NavBar() {
         }}
       >
         <Routes>
-          <Route path="/" element={<Layout />} >
+          <Route path="/" element={<Layout />}>
             <Route index element={<Content />} />
             <Route path="app/v1/user/market" element={<Market />} />
             <Route path="app/v1/user/signup" element={<SignForm />} />
             <Route path="app/v1/user/chat" element={<Chat />} />
+            <Route path="app/v1/user/crypto" element={<Solana_Adapter />} /> {/* Add route for Crypto */}
             <Route path="app/v1/user/login" element={<LoginForm />} />
             <Route path="app/v1/user/contact" element={<Contact />} />
             <Route path="*" element={<NoPage />} />
@@ -60,6 +62,13 @@ function Layout() {
             to="/app/v1/user/market"
           >
             Market
+          </Link>
+          <Link
+            className="text-lg font-semibold px-4 py-2 rounded hover:bg-blue-400 hover:text-white transition-all"
+            style={{ textDecoration: "none" }}
+            to="/app/v1/user/crypto"  // Add Crypto link to navbar
+          >
+            Crypto
           </Link>
         </div>
 
