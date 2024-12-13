@@ -14,8 +14,8 @@ const ChatWidget = () => {
     setIsChatOpen(!isChatOpen);
   };
 
-  const url = "https://api.edenai.run/v2/workflow/dfa7a567-e135-44cf-900a-4bb01d8efe9f/execution/";
-  const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiOTE4ZDQ1NDItNTZhYS00OTkzLTkyMDUtZGYzZTEwMWFkMTI3IiwidHlwZSI6ImFwaV90b2tlbiJ9.NUwWh8vlTYp4mO6q3pKwcguXB1rlgqt_5nrkhs77UZk";
+ const url = "https://api.edenai.run/v2/workflow/77b16f10-9795-40ff-8da5-8d1dff493a94/execution/"
+  const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMWMwM2MxOGUtZDIxMS00ZGZjLWFkY2ItZTllZjZlNGNlYTZhIiwidHlwZSI6ImFwaV90b2tlbiJ9.zSvQRU56kx94OHmzhwulTELYbp5j8HnVQorl73mPX4c";
  // Ai Fetching Code 
   const launchExecution = async () => {
     try {

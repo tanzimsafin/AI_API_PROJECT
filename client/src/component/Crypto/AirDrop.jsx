@@ -99,7 +99,7 @@ function AirDrop() {
     <div className="flex flex-col items-center justify-start h-screen bg-gray-100 p-4">
       <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-md">
         <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">
-          Solana Airdrop Tool
+          Crypto Transaction
         </h1>
         <div className="mb-6">
           <label
