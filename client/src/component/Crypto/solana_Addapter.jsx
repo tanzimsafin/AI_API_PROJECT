@@ -1,11 +1,14 @@
 import React from "react";
-import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
-import { WalletModalProvider, WalletDisconnectButton, WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import {
+  ConnectionProvider,
+  WalletProvider,
+} from "@solana/wallet-adapter-react";
+import {
+  WalletModalProvider,
+  WalletDisconnectButton,
+  WalletMultiButton,
+} from "@solana/wallet-adapter-react-ui";
 import AirDrop from "./AirDrop";
-
-// Ensure to install default wallets and styles:
-// npm install @solana/wallet-adapter-wallets
-// npm install @solana/wallet-adapter-react-ui
 import "@solana/wallet-adapter-react-ui/styles.css";
 
 function Solana_Adapter() {

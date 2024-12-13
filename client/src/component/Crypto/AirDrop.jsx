@@ -51,7 +51,7 @@ function AirDrop() {
     }
     try {
       const balance = await connection.getBalance(wallet.publicKey);
-      setBalance((balance / LAMPORTS_PER_SOL).toFixed(2)); // Convert lamports to SOL
+      setBalance((balance / LAMPORTS_PER_SOL)); // Convert lamports to SOL
     } catch (error) {
       alert("Failed to fetch balance: " + error.message);
     }
