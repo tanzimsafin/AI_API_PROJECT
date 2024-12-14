@@ -1,14 +1,13 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
 import Content from "../component/Content";
-import Chat from "../component/Chat";
+
 import Market from "../component/Market";
-import Contact from "../component/Contact";
 import NoPage from "../component/NoPage";
 import SignForm from "../component/signup";
 import LoginForm from "../component/Login";
-import Solana_Adapter from "../component/Crypto/solana_Addapter";  // Import the Solana_Adapter component
-
+import Solana_Adapter from "../component/Crypto/solana_Addapter";
+import NewsBlog from "../component/news_Blog";
 
 function NavBar() {
   return (
@@ -25,14 +24,14 @@ function NavBar() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Content />} />
-            <Route path="app/v1/user/market" element={<Market />} />
             <Route path="app/v1/user/signup" element={<SignForm />} />
-            <Route path="app/v1/user/chat" element={<Chat />} />
-            <Route path="app/v1/user/crypto" element={<Solana_Adapter />} /> {/* Add route for Crypto */}
             <Route path="app/v1/user/login" element={<LoginForm />} />
-            <Route path="app/v1/user/contact" element={<Contact />} />
             <Route path="*" element={<NoPage />} />
+            <Route path="app/v1/user/market" element={<Market />} />
+            <Route path="app/v1/user/crypto" element={<Solana_Adapter />} />
+            <Route path="app/v1/user/news" element={<NewsBlog />} />
           </Route>
+          
         </Routes>
       </div>
     </BrowserRouter>
@@ -67,15 +66,24 @@ function Layout() {
           <Link
             className="text-lg font-semibold px-4 py-2 rounded hover:bg-blue-400 hover:text-white transition-all"
             style={{ textDecoration: "none" }}
-            to="/app/v1/user/crypto"  // Add Crypto link to navbar
+            to="/app/v1/user/crypto"
           >
             Crypto
           </Link>
+          <Link
+            className="text-lg font-semibold px-4 py-2 rounded hover:bg-blue-400 hover:text-white transition-all"
+            style={{ textDecoration: "none" }}
+            to="/app/v1/user/news"
+          >
+            Finance News
+          </Link>
         </div>
-
         {/* Middle Section: Search Bar */}
         <div className="flex-grow flex justify-center">
-          <form className="flex items-center gap-2 w-auto" onSubmit={(e) => e.preventDefault()}>
+          <form
+            className="flex items-center gap-2 w-auto"
+            onSubmit={(e) => e.preventDefault()}
+          >
             <input
               type="text"
               placeholder="Search markets"

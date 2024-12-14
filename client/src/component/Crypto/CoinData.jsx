@@ -32,30 +32,30 @@ const CoinData = () => {
     }, []);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div className="flex items-center justify-center h-screen"><div className="text-white text-xl">Loading...</div></div>;
     }
 
     if (error) {
-        return <div>Error: {error.message}</div>;
+        return <div className="flex items-center justify-center h-screen"><div className="text-red-500 text-xl">Error: {error.message}</div></div>;
     }
 
     return (
-        <div className='text-white te flex flex-col items-center justify-center p-4'>
-            <h2>Coins</h2>
-            <table>
+        <div className="text-white flex flex-col items-center justify-center p-4 min-h-screen bg-gray-900">
+            <h2 className="text-3xl font-bold mb-4">Cryptocurrency Prices</h2>
+            <table className="table-auto w-full max-w-4xl bg-gray-800 rounded-lg shadow-lg">
                 <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Symbol</th>
-                        <th>Price</th>
+                    <tr className="bg-gray-700">
+                        <th className="px-4 py-2 text-left">Name</th>
+                        <th className="px-4 py-2 text-left">Symbol</th>
+                        <th className="px-4 py-2 text-left">Price</th>
                     </tr>
                 </thead>
                 <tbody>
                     {coins.map((coin) => (
-                        <tr key={coin.id}>
-                            <td>{coin.name}</td>
-                            <td>{coin.symbol}</td>
-                            <td className='text-green-400'>{coin.price} $</td>
+                        <tr key={coin.id} className="border-t border-gray-700">
+                            <td className="px-4 py-2">{coin.name}</td>
+                            <td className="px-4 py-2">{coin.symbol}</td>
+                            <td className="px-4 py-2 text-green-400">{coin.price} $</td>
                         </tr>
                     ))}
                 </tbody>

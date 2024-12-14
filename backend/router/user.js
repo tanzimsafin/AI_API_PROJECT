@@ -140,7 +140,6 @@ userRouter.get('/market', userMiddleware, async (req, res) => {
     res.json({ message: 'Market data retrieved' });
 });
 
-
 module.exports = {
 userRouter:userRouter
 };

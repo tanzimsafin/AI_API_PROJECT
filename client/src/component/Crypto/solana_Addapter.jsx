@@ -15,7 +15,7 @@ import CoinData from "./CoinData";
 
 function Solana_Adapter() {
   return (
-    <div className="solana-background flex flex-col items-end justify-start p-8">
+    <div className="solana-background flex flex-col items-end justify-center p-8">
       <ConnectionProvider endpoint="https://solana-devnet.g.alchemy.com/v2/cHoM2bnzBlP2k9MAYnYPtBDAzaEjJqnK">
         <WalletProvider wallets={[]} autoConnect>
           <WalletModalProvider>

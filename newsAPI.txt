@@ -1,0 +1,36 @@
+{
+  status: 'success',
+  data: {
+    coin: {
+      uuid: 'Qwsogvtv82FCd',
+      symbol: 'BTC',
+      name: 'Bitcoin',
+      description: 'Bitcoin is a digital currency with a finite supply, allowing users to send/receive money without a central bank/government, often nicknamed "Digital Gold".',
+      color: '#f7931A',
+      iconUrl: 'https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg',
+      websiteUrl: 'https://bitcoin.org',
+      links: [Array],
+      supply: [Object],
+      numberOfMarkets: 2480,
+      numberOfExchanges: 108,
+      '24hVolume': '73762930986',
+      marketCap: '2014109520728',
+      fullyDilutedMarketCap: '2136652979034',
+      price: '101745.3799540051',
+      btcPrice: '1',
+      priceAt: 1734115500,
+      change: '0.64',
+      rank: 1,
+      sparkline: [Array],
+      allTimeHigh: [Object],
+      coinrankingUrl: 'https://coinranking.com/coin/Qwsogvtv82FCd+bitcoin-btc',
+      tier: 1,
+      lowVolume: false,
+      listedAt: 1330214400,
+      hasContent: true,
+      notices: null,
+      contractAddresses: [],
+      tags: [Array]
+    }
+  }
+}

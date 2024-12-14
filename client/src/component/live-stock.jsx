@@ -44,7 +44,7 @@ const StockDashboard = () => {
           const filteredData = prevData.filter(
             (stock) => stock.symbol !== mappedData.symbol
           );
-          return [mappedData, ...filteredData].slice(0, 10); // Keep latest 10 records
+          return [mappedData, ...filteredData].slice(0, 100); // Keep latest 10 records
         });
       } catch (err) {
         console.error("Error parsing WebSocket data:", err);
