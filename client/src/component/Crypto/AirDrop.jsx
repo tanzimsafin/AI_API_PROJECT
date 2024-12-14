@@ -11,7 +11,6 @@ function AirDrop() {
   const [balance, setBalance] = useState(null);
   const [showBalance, setShowBalance] = useState(false);
   const [recipient, setRecipient] = useState("");
-  const amountRef = useRef(null);
   const sendAmountRef = useRef(null);
 
   useEffect(() => {
@@ -19,30 +18,6 @@ function AirDrop() {
       setBalance(null); // Reset balance when wallet is connected
     }
   }, [wallet.connected]);
-
-  async function requestAirdrop() {
-    const amount = parseFloat(amountRef.current.value);
-    if (!wallet.publicKey) {
-      alert("Please connect your wallet!");
-      return;
-    }
-    if (isNaN(amount) || amount <= 0) {
-      alert("Please enter a valid amount for airdrop!");
-      return;
-    }
-    try {
-      const signature = await connection.requestAirdrop(
-        wallet.publicKey,
-        amount * LAMPORTS_PER_SOL
-      );
-      console.log("Airdrop signature:", signature);
-      alert(`${amount} SOL has been sent to address ${wallet.publicKey.toBase58()}`);
-      fetchBalance(); // Update balance after airdrop
-    } catch (error) {
-      console.error("Airdrop failed:", error);
-      alert("Airdrop failed: " + error.message);
-    }
-  }
 
   async function fetchBalance() {
     if (!wallet.connected) {
@@ -101,28 +76,6 @@ function AirDrop() {
         <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">
           Crypto Transaction
         </h1>
-        <div className="mb-6">
-          <label
-            htmlFor="amount"
-            className="block text-sm font-medium text-gray-700 mb-2"
-          >
-            Enter Amount for Airdrop (SOL)
-          </label>
-          <input
-            ref={amountRef}
-            id="amount"
-            type="number"
-            placeholder="Enter amount"
-            className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
-        <button
-          onClick={requestAirdrop}
-          className="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition duration-300 mb-4"
-          disabled={!wallet.connected}
-        >
-          Request Airdrop
-        </button>
         <div className="mb-6">
           <label
             htmlFor="sendAmount"

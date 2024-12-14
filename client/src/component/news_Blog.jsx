@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
-
+import Chat from './Chat';
 const NewsBlog = () => {
     const [news, setNews] = useState([]);
     const [page, setPage] = useState(0);
@@ -36,7 +36,9 @@ const NewsBlog = () => {
     }, [loading]);
 
     return (
+        
         <div className="bg-gray-900 text-white p-6 min-h-screen">
+            
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-center text-green-600">Latest News</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {news.map((article, index) => (
@@ -55,6 +57,7 @@ const NewsBlog = () => {
                 ))}
             </div>
             {loading && <p className="text-center mt-4">Loading...</p>}
+            <Chat />
         </div>
     );
 };
