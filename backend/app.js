@@ -1,9 +1,10 @@
 require('dotenv').config()
 const cors=require('cors');
 const express = require('express');
-const {userRouter} = require('./router/user');
+const {userRouter} = require('./router/userRouter');
 const mongoose  = require('mongoose');
 const {MONGO_URL}=require('./config');
+const session = require('express-session-jwt')
 const app=express();
 app.use(cors())
 app.use(express.json());

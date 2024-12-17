@@ -65,7 +65,7 @@ const StockDashboard = () => {
 
   return (
     <div className="container mx-auto px-4 py-6">
-      <h1 className="text-3xl font-bold text-white text-center mb-6">Live Stock Market Dashboard</h1>
+      <h1 className="text-3xl font-bold text-green-500 text-center mb-6">Live Stock Market</h1>
       
       {error && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">

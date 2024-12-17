@@ -63,7 +63,7 @@ userRouter.post('/signin', async (req, res) => {
         const verify=await bcrypt.compare(Password,hashed_Password);//compare with Password and hash Password
         if(verify){
             const token = jwt.sign({ id:User_Id }, JWT_SECRET_User, { expiresIn: '1h' });
-            res.json({message:`User is SignedIn `, "token":token});
+            res.json({message:`User is SignedIn `,"auth":true, "token":token});
         }else{
            res.send({message:'Sorry Wrong Password!'});
         }
@@ -134,10 +134,20 @@ userRouter.put('/forgetPassword', async (req, res) => {
     }
  
 });
-
+// Verify Token Route
+userRouter.get('/verify-token', userMiddleware, (req, res) => {
+    // If the middleware passes, the token is valid
+    res.json({ 
+      valid: true, 
+      user_Id: req.user_Id 
+    });
+  });
 //---------------------------------Market-------------------------------
 userRouter.get('/market', userMiddleware, async (req, res) => {
     res.json({ message: 'Market data retrieved' });
+});
+userRouter.get('/crypto', userMiddleware, async (req, res) => {
+    res.json({ message: 'Crypto data retrieved' });
 });
 
 module.exports = {

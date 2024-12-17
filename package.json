@@ -12,6 +12,8 @@
   "description": "",
   "dependencies": {
     "assemblyai": "^4.8.0",
+    "axios": "^1.7.9",
+    "node-localstorage": "^3.0.5",
     "openai": "^4.76.0",
     "replicate": "^1.0.1",
     "request": "^2.88.2"

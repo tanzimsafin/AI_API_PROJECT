@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Home from './Home';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -17,9 +18,10 @@ const LoginForm = () => {
         email,
         Password
       });
-      console.log('Login Success:', response.data);
-    
-      // Redirect or update UI after successful login
+      if (response.data.auth) {
+        localStorage.setItem('token', response.data.token);
+        console.log('Login Success:', response.data);
+      }
     } catch (error) {
       console.error('Login Error:', error);
       setMessage('Login failed. Please check your credentials.');
@@ -77,8 +79,10 @@ const LoginForm = () => {
   };
 
   return (
+    
     <div className="flex items-center justify-center h-screen bg-gray-300">
       <div className="w-full max-w-sm p-8 bg-white shadow-md rounded-md">
+
         {!showForgotPassword ? (
           <>
             <h2 className="mb-6 text-2xl font-semibold text-center text-gray-800">
