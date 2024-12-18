@@ -1,4 +1,4 @@
-# API Use InAI 
+# API and AI 
 
 ## Step 1: 
 
