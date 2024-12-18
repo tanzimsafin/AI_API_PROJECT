@@ -7,7 +7,7 @@ const StockDashboard = () => {
 
   useEffect(() => {
     // Replace with your WebSocket URL and API key
-    const API_TOKEN = "demo"; // Replace with your actual API token
+    const API_TOKEN = "demo";
     const socketUrl = `wss://ws.eodhistoricaldata.com/ws/us?api_token=${API_TOKEN}`;
 
     const socket = new WebSocket(socketUrl);
@@ -18,7 +18,7 @@ const StockDashboard = () => {
       // Subscribe to specific stocks (AMZN, TSLA as example)
       const subscribeMessage = JSON.stringify({
         action: "subscribe",
-        symbols: "AAPL,TSLA", // Add more symbols if needed
+        symbols: "AAPL,TSLA,AMZN,MSFT", // Add more symbols if needed
       });
       socket.send(subscribeMessage);
     };

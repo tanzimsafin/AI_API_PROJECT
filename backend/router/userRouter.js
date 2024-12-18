@@ -150,6 +150,7 @@ userRouter.get('/crypto', userMiddleware, async (req, res) => {
     res.json({ message: 'Crypto data retrieved' });
 });
 
+
 module.exports = {
 userRouter:userRouter
 };
