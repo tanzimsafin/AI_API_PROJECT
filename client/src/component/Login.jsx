@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Home from './Home';
+import { useNavigate } from 'react-router-dom';
 
-const LoginForm = () => {
+const LoginForm = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
   const [forgotEmail, setForgotEmail] = useState('');
@@ -10,6 +10,8 @@ const LoginForm = () => {
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [showNewPasswordField, setShowNewPasswordField] = useState(false);
   const [message, setMessage] = useState('');
+  
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +22,11 @@ const LoginForm = () => {
       });
       if (response.data.auth) {
         localStorage.setItem('token', response.data.token);
+        setIsLoggedIn(true);
+        navigate('/');
         console.log('Login Success:', response.data);
+      } else {
+        setMessage(response.data.message || 'Login failed');
       }
     } catch (error) {
       console.error('Login Error:', error);
@@ -57,7 +63,7 @@ const LoginForm = () => {
     try {
       const response = await axios.put('http://localhost:8080/app/v1/user/forgetPassword', {
         email: forgotEmail,
-        password: newPassword
+        Password: newPassword
       });
       
       setMessage(response.data.message);
@@ -79,10 +85,8 @@ const LoginForm = () => {
   };
 
   return (
-    
     <div className="flex items-center justify-center h-screen bg-gray-300">
       <div className="w-full max-w-sm p-8 bg-white shadow-md rounded-md">
-
         {!showForgotPassword ? (
           <>
             <h2 className="mb-6 text-2xl font-semibold text-center text-gray-800">

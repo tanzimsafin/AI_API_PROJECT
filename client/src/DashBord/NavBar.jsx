@@ -7,7 +7,7 @@ import SignForm from "../component/signup";
 import LoginForm from "../component/Login";
 import Solana_Adapter from "../component/Crypto/solana_Addapter";
 import NewsBlog from "../component/news_Blog";
-import Home from '../component/Home.jsx';
+
 
 // Add a new Protected Route component
 const ProtectedRoute = ({ children }) => {
@@ -205,17 +205,13 @@ function Layout({ isDarkMode, toggleTheme, isLoggedIn, handleLogout }) {
 
         {/* Right Section: Theme Toggle, Auth Buttons */}
         <div className="flex items-center gap-4">
-          {/* Theme Toggle Switch (previous implementation) */}
-          <div 
-            className={`relative w-16 h-8 rounded-full cursor-pointer transition-colors duration-300 ${
-              isDarkMode 
-                ? 'bg-gray-700' 
-                : 'bg-gray-300'
-            }`}
+          {/* Theme Toggle Emoji Button */}
+          <button 
+            className="text-2xl focus:outline-none transition-transform transform hover:scale-110"
             onClick={toggleTheme}
           >
-            {/* ... (previous theme toggle implementation) ... */}
-          </div>
+            {isDarkMode ? '🌙' : '☀️'}
+          </button>
 
           {/* Conditional Rendering for Auth Buttons */}
           {!isLoggedIn ? (

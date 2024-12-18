@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Market from './Market';
+import Solana_Adapter from './Crypto/solana_Addapter';
 // Import any organization-specific modules here
 
 const Dashboard = () => {
@@ -20,7 +22,11 @@ const Dashboard = () => {
         </button>
       </header>
       <main className="dashboard-main">
-        {/* Add your dashboard content here */}
+        <Solana_Adapter />
+        <Home />
+        <NoPage />
+        <Market />
+        <Chat />
       </main>
     </div>
   );
