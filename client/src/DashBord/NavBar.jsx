@@ -8,7 +8,6 @@ import LoginForm from "../component/Login";
 import Solana_Adapter from "../component/Crypto/solana_Addapter";
 import NewsBlog from "../component/news_Blog";
 
-
 // Add a new Protected Route component
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem('token');
@@ -170,6 +169,17 @@ function Layout({ isDarkMode, toggleTheme, isLoggedIn, handleLogout }) {
                 to="/app/v1/user/news"
               >
                 Finance News
+              </Link>
+              <Link
+                className={`text-lg font-semibold px-4 py-2 rounded ${
+                  isDarkMode
+                    ? 'hover:bg-blue-400 hover:text-white'
+                    : 'hover:bg-blue-500 hover:text-white'
+                } transition-all`}
+                style={{ textDecoration: "none" }}
+                to="/app/v1/user/profile"
+              >
+                Profile
               </Link>
             </>
           )}
