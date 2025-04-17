@@ -1,6 +1,5 @@
-Here’s a basic README template for the repository `AI_API_PROJECT`. You can customize it further based on the specifics of the project.
 
-```markdown
+
 # AI API Project
 
 Welcome to the **AI API Project**! This project is designed to provide AI-based solutions through APIs. Below, you'll find details about the project, its setup, and usage.
