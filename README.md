@@ -33,8 +33,8 @@ The AI API Project leverages cutting-edge artificial intelligence to solve real-
 This project is built using the following technologies:
 
 - **JavaScript**: Core programming language for the project.
-- **CSS**: For styling the frontend (if applicable).
-- **HTML**: For structuring the frontend (if applicable).
+- **Taildwind**: For styling the frontend .
+- **React**: For structuring the frontend .
 
 ## Getting Started
 
